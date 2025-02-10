@@ -1,5 +1,6 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const { VueLoaderPlugin } = require('vue-loader/dist');
 module.exports = {
   mode: 'development', // 指定为开发模式
   // 入口文件
@@ -23,6 +24,7 @@ module.exports = {
       // js插入到body
       inject: 'body',
     }),
+    new VueLoaderPlugin(),
   ],
   module: {
     rules: [
@@ -67,6 +69,11 @@ module.exports = {
         //     presets: ['@babel/preset-env'],
         //   },
         // },
+      },
+      {
+        //检测以.vue结尾的文件
+        test: /\.vue$/,
+        loader: 'vue-loader',
       },
     ],
   },
